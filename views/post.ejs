@@ -1,0 +1,51 @@
+<%- include('./partials/header') %>
+
+<div class="container">
+  <h1><%= title %></h1>
+  <p><%= content %></p>
+
+  <% if (showenPostAuthor===req.user._id.toString()) { %>
+  <form action="/delete" method="POST" class="delete">
+    <input type="hidden" name="postId" value="<%= showenPostId %>" />
+    <button
+      type="submit"
+      class="btn btn-danger rounded-pill btn-sm px-4 custom-btn"
+    >
+      Delete Post
+    </button>
+  </form>
+  <% } %>
+
+  <!-- Display replies -->
+  <% if (repliesList && repliesList.length> 0) { %>
+  <h2>Replies:</h2>
+  <ul>
+    <% for (let reply of repliesList) { %>
+    <li><%= reply.replyContent %></li>
+    <% } %>
+  </ul>
+  <% } else { %>
+  <p>No replies yet.</p>
+  <% } %>
+
+  <form action="/reply" method="post">
+    <div class="form-floating">
+      <textarea
+        name="replyBody"
+        class="form-control"
+        placeholder="Leave a comment here"
+        id="floatingTextarea2"
+        style="height: 110px"
+      ></textarea>
+      <label for="floatingTextarea2">Comments</label>
+    </div>
+    <input type="hidden" name="postId" value="<%= showenPostId %>" />
+    <button
+      type="submit"
+      class="btn btn-success rounded-pill btn-sm px-4 custom-btn"
+    >
+      Reply
+    </button>
+  </form>
+</div>
+<%- include('./partials/footer') %>

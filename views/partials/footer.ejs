@@ -1,0 +1,19 @@
+<div class="container">
+  <footer class="flex-wrap justify-content-between align-items-center py-3 my-4 border-top footer-padding">
+    
+    
+    <% if (req.user) { %>
+  <form action="/logout" method="post">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end logout">
+      <button type="submit" class="btn btn-success rounded-pill btn-lg px-4 custom-btn">Log Out</button>
+    </div>
+  </form>
+  <% } %>
+    <div class="footer">
+      <p>Made with ❤️ by The App Brewery</p>
+    </div>
+  </footer>
+</div>
+</body>
+
+</html>
